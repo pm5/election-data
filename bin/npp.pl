@@ -7,4 +7,11 @@ use experimental qw[signatures switch];
 
 my $candidate_base_url = q[https://2022.npp.vote/api/v1/candidate/];
 
-say "curl '$candidate_base_url/$_.json' > $_.json" for 1..70;
+sub show_curl($id) {
+    say "curl '$candidate_base_url/$id.json' > $id.json";
+}
+
+my @candidates = @ARGV;
+@candidates = 1..70 unless @candidates;
+
+show_curl($_) for @candidates;
